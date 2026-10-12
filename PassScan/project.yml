@@ -1,0 +1,48 @@
+name: PassScan
+options:
+  bundleIdPrefix: com.lenny
+  deploymentTarget:
+    iOS: "16.0"
+settings:
+  base:
+    SWIFT_VERSION: "5.0"
+    MARKETING_VERSION: "1.0"
+    CURRENT_PROJECT_VERSION: "1"
+targets:
+  PassScan:
+    type: application
+    platform: iOS
+    sources:
+      - path: PassScan
+    scheme: {}
+    settings:
+      base:
+        PRODUCT_BUNDLE_IDENTIFIER: com.lenny.passscan
+        PRODUCT_NAME: PassScan
+        ASSETCATALOG_COMPILER_APPICON_NAME: AppIcon
+        TARGETED_DEVICE_FAMILY: "1"
+        ENABLE_BITCODE: NO
+    info:
+      path: Config/Info.plist
+      properties:
+        CFBundleDisplayName: PassScan
+        CFBundleShortVersionString: "$(MARKETING_VERSION)"
+        CFBundleVersion: "$(CURRENT_PROJECT_VERSION)"
+        LSRequiresIPhoneOS: true
+        UILaunchScreen: {}
+        UISupportedInterfaceOrientations:
+          - UIInterfaceOrientationPortrait
+        NSCameraUsageDescription: "La caméra sert à scanner les QR codes et codes-barres de tes billets."
+        NSPhotoLibraryUsageDescription: "Pour importer un billet depuis une capture d'écran."
+        NFCReaderUsageDescription: "Le NFC sert à lire tes cartes de bus, train et métro."
+        com.apple.developer.nfc.readersession.iso7816.select-identifiers:
+          - "315449432E494341"
+          - "D2760000850101"
+        com.apple.developer.nfc.readersession.felica.systemcodes:
+          - "0003"
+          - "8008"
+    entitlements:
+      path: Config/PassScan.entitlements
+      properties:
+        com.apple.developer.nfc.readersession.formats:
+          - TAG
